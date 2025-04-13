@@ -70,3 +70,16 @@ def is_intersect(s1: Shape, s2: Shape):
         return f"Ошибка при проверке пересечения: {e}"
 
 
+# Main
+if __name__ == "__main__":
+    try:
+        pent = Pentagon("P1", [(0, 0), (2, 0), (3, 2), (1.5, 4), (0, 2)])
+        tri = Triangle("T1", [(1, 1), (2, 1), (1.5, 3)])
+
+        print(compare(pent, tri))
+        print("Пересекаются?", is_intersect(pent, tri))
+
+    except ShapeException as se:
+        print(f"Ошибка фигуры: {se}")
+    except Exception as e:
+        print(f"Общая ошибка: {e}")
