@@ -16,7 +16,7 @@ class Shape:
     def area(self):
         x = [p[0] for p in self.points]
         y = [p[1] for p in self.points]
-        return abs(sum(x[i] * y[(i+1)%len(self.points)] - x[(i+1)%len(self.points)] * y[i]
+        return abs(sum(x[i] * y[(i+1) % len(self.points)] - x[(i+1) % len(self.points)] * y[i]
                        for i in range(len(self.points))) / 2)
 
 
@@ -41,11 +41,11 @@ def compare(t1: Shape, t2: Shape):
         a2 = t2.area()
         print(f"Площадь {t1.id}: {a1}, Площадь {t2.id}: {a2}")
         if a1 > a2:
-            return f"{t1.id} больше"
+            return f"{t1.id} больше, чем {t2.id}"
         elif a1 < a2:
-            return f"{t2.id} больше"
+            return f"{t2.id} больше, чем {t1.id}"
         else:
-            return "Фигуры одинаковы"
+            return f"Фигуры {t1.id} и {t2.id} одинаковы"
     except Exception as e:
         return f"Ошибка при сравнении: {e}"
 
@@ -77,7 +77,8 @@ if __name__ == "__main__":
         tri = Triangle("T1", [(1, 1), (2, 1), (1.5, 3)])
 
         print(compare(pent, tri))
-        print("Пересекаются?", is_intersect(pent, tri))
+        intersect_output = "пересекаются" if is_intersect(pent, tri) else "не пересекаются"
+        print(f"Фигуры {pent.id} и {tri.id} {intersect_output}")
 
     except ShapeException as se:
         print(f"Ошибка фигуры: {se}")
